@@ -21,23 +21,23 @@ export class OrderController implements interfaces.Controller {
 
 
 
-    // @httpPost("/")
-    // private async send(@request() req: express.Request, @response() res: express.Response) {
+    @httpPost("/")
+    private async send(@request() req: express.Request, @response() res: express.Response) {
 
-    //     const order = new OrderDTO(req.body);
-    //     console.log(order.table);
-
-
-    //     // this.orderPortInbound.insert(order);
+        const order = new OrderDTO(req.body);
+        console.log(order.table);
 
 
-    //     // try {
-    //     //     await this.fooService.send(req.body);
-    //     //     res.sendStatus(201);
-    //     // } catch (err) {
-    //     //     res.status(400).json({ error: err.message });
-    //     // }
-    // }
+        // this.orderPortInbound.insert(order);
+
+
+        // try {
+        //     await this.fooService.send(req.body);
+        //     res.sendStatus(201);
+        // } catch (err) {
+        //     res.status(400).json({ error: err.message });
+        // }
+    }
  
     // @httpGet("/")
     // private list(@queryParam("start") start: number, @queryParam("count") count: number): string {

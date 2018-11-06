@@ -1,0 +1,8 @@
+"use strict";
+class OrderRepository {
+    save(order) {
+        throw new Error("Method not implemented.");
+    }
+}
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9hcGktb3V0Ym91bmQvcmVwb3NpdG9yeS9vcmRlci5yZXBvc2l0b3J5LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxNQUFNLGVBQWU7SUFDakIsSUFBSSxDQUFDLEtBQWE7UUFDZCxNQUFNLElBQUksS0FBSyxDQUFDLHlCQUF5QixDQUFDLENBQUM7SUFDL0MsQ0FBQztDQUNKIiwiZmlsZSI6ImFwaS1vdXRib3VuZC9yZXBvc2l0b3J5L29yZGVyLnJlcG9zaXRvcnkuanMiLCJzb3VyY2VzQ29udGVudCI6WyJjbGFzcyBPcmRlclJlcG9zaXRvcnkge1xuICAgIHNhdmUob3JkZXI6IFN0cmluZyk6IE51bWJlciB7XG4gICAgICAgIHRocm93IG5ldyBFcnJvcihcIk1ldGhvZCBub3QgaW1wbGVtZW50ZWQuXCIpO1xuICAgIH1cbn0iXX0=

@@ -4,7 +4,7 @@ export default interface OrderPortInbound {
 
     getById(id: Number): void;
 
-    insert(order: String) : Number;
+    send(order: String) : Number;
 
     update(order: String) : void;
 

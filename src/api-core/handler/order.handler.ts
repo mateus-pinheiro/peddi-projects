@@ -13,7 +13,7 @@ export default class OrderHandler implements OrderPortInbound {
     getById(id: Number): void {
         // throw new Error("Method not implemented.");
     }
-    insert(order: String): Number {
+    send(order: String): Number {
         this.orderPortOutbound.save();
         throw new Error("Method not implemented.");
     }    
