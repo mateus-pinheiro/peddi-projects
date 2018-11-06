@@ -1,19 +1,22 @@
 import "reflect-metadata";
+// import { Container } from 'inversify';
+// import FooService from "./api-core/handler/foo.service";
+// import FooImplementationService from "./api-core/port/inbound/foo.iservice";
 import { Request, Response, NextFunction } from "express";
-import { Container } from 'inversify';
 import {InversifyExpressServer } from 'inversify-express-utils';
 import App from "./app";
-import FooService from "./api-core/handler/foo.service";
-import FooImplementationService from "./api-core/port/inbound/foo.iservice";
-import "./api-inbound/controllers/foo.controller";
+import "./api-inbound/controller/foo.controller";
+import "./api-inbound/controller/order.controller";
+import container from "./config/ioc-config";
+
 
 const port: number | string = process.env.PORT || 3000;
 App.set("port", port);
 
 //set up a container of Invesify
-let container = new Container();
+// let container = new Container();
 
-container.bind<FooService>('FooService').to(FooImplementationService);
+// container.bind<FooService>('FooService').to(FooImplementationService);
 
 let server = new InversifyExpressServer(container, App);
 
