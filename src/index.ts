@@ -3,7 +3,7 @@ import "reflect-metadata";
 // import FooService from "./api-core/handler/foo.service";
 // import FooImplementationService from "./api-core/port/inbound/foo.iservice";
 import { Request, Response, NextFunction } from "express";
-import {InversifyExpressServer } from 'inversify-express-utils';
+import { InversifyExpressServer } from 'inversify-express-utils';
 import App from "./app";
 import "./api-inbound/controller/foo.controller";
 import "./api-inbound/controller/order.controller";

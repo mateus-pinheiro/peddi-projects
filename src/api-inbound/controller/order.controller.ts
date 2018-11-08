@@ -3,6 +3,7 @@ import { interfaces, controller, httpGet, httpPost, httpDelete, request, queryPa
 import { injectable, inject } from "inversify";
 import OrderDTO from "../../api-core/commons/dto/order.dto";
 import OrderPortInbound from "../../api-core/port/inbound/order.inbound-port";
+import { STATUS_CODES } from "http";
 
 @controller("/orders")
 export class OrderController implements interfaces.Controller {
@@ -10,29 +11,65 @@ export class OrderController implements interfaces.Controller {
     constructor( @inject("OrderPortInbound") private orderPortInbound: OrderPortInbound ) {}
 
     @httpGet("/")
-    private getAll(@request() req: express.Request, @response() res: express.Response, next: express.NextFunction) {
+    private getAll(req: express.Request,res: express.Response, next: express.NextFunction) {
         return this.orderPortInbound.get();
     }
  
     @httpGet("/:id")
-    private get(@requestParam("id") id : Number, @request() req: express.Request, @response() res: express.Response, next: express.NextFunction) {
-        return this.orderPortInbound.getById(id);
+    private get(@requestParam("id") id : Number,req: express.Request,res: express.Response, next: express.NextFunction) {
+        console.log(id)
+        // return this.orderPortInbound.getById(id);
     }
 
 
 
     @httpPost("/")
-    private async send(@request() req: express.Request, @response() res: express.Response) {
+    private save(req: express.Request, res: express.Response) {
 
         const order = new OrderDTO(req.body);
-        console.log(order.table);
-
+        try {
+            let id = this.orderPortInbound.save(order);
+            res.status(200).json({
+                status: res.statusCode,
+                data: {
+                    id: id
+                }
+            })
+        } catch (error) {
+            
+        }
+        
 
         // this.orderPortInbound.insert(order);
 
+        // try {
+        //     await this.orderPortInbound.send(order);
+        //     res.sendStatus(201);
+        // } catch (err) {
+        //     res.status(400).json({ error: err.message });
+        // }
+    }
+    @httpPost("/:id")
+    private update(@requestParam("id") id : Number, req: express.Request, res: express.Response) {
+
+        const order = new OrderDTO(req.body);
+        try {
+            const updatedOrder = this.orderPortInbound.update(id, order);
+            res.status(200).json({
+                status: res.statusCode,
+                data: {
+                    updatedOrder
+                }
+            })
+        } catch (error) {
+            
+        }
+        
+
+        // this.orderPortInbound.insert(order);
 
         // try {
-        //     await this.fooService.send(req.body);
+        //     await this.orderPortInbound.send(order);
         //     res.sendStatus(201);
         // } catch (err) {
         //     res.status(400).json({ error: err.message });

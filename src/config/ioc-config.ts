@@ -22,6 +22,8 @@ import OrderHandler from "../api-core/handler/order.handler";
 
 import SERVICE_IDENTIFIER from "../constants/identifiers";
 import OrderAdapterOutbound from "../api-outbound/adapter/order.outbound-adapter";
+import OrderRepository from "../api-outbound/repository/order.repository";
+import OrderRepositoryImpl from "../api-outbound/repository/implementation/order.repositoryimpl";
 
 let container = new Container();
 
@@ -33,6 +35,8 @@ container.bind<OrderPortInbound>('OrderPortInbound').to(OrderHandler);
 //Outbound Services
 container.bind<OrderPortOutbound>('OrderPortOutbound').to(OrderAdapterOutbound);
 
+//Repository Services
+container.bind<OrderRepository>('OrderRepository').to(OrderRepositoryImpl);
 // container.bind<Warrior>(SERVICE_IDENTIFIER.WARRIOR).to(Samurai).whenTargetNamed(TAG.JAPANESE);
 // container.bind<Weapon>(SERVICE_IDENTIFIER.WEAPON).to(Shuriken).whenParentNamed(TAG.CHINESE);
 // container.bind<Weapon>(SERVICE_IDENTIFIER.WEAPON).to(Katana).whenParentNamed(TAG.JAPANESE);

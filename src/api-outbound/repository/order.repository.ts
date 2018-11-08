@@ -1,5 +1,7 @@
-class OrderRepository {
-    save(order: String): Number {
-        throw new Error("Method not implemented.");
-    }
+export default interface OrderRepository {
+
+    save(order: any): Number;
+
+    update(id: Number, order: any): any
+
 }

@@ -31,11 +31,11 @@
 
 export default class OrderDTO {
 
-    public table: Number = 0;
-    public guests: Number = 0;
-    public amount_price: Number= 0;
-    public status: Number = 0;
-    public restaurant_id_cloud: Number = 0;
+    public table: Number;
+    public guests: Number;
+    public amount_price: Number;
+    public status: Number;
+    public restaurant_id_cloud: Number;
     // waiter: fields.WaiterDTO()
 
     constructor(incoming: OrderDTO) {
@@ -44,7 +44,7 @@ export default class OrderDTO {
         this.restaurant_id_cloud = incoming.restaurant_id_cloud;
         this.guests = incoming.guests;
         this.amount_price = incoming.amount_price;
-    }   
+    }
 
 }
 

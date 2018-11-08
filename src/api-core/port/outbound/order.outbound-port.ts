@@ -1,5 +1,7 @@
+import OrderDTO from "../../commons/dto/order.dto";
+
 export default interface OrderPortOutbound {
+    save(order: OrderDTO): Number;
 
-    save() : String;
-
+    update(id: Number, order: OrderDTO): void;
 }

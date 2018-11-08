@@ -1,11 +1,16 @@
+import OrderDTO from "../../commons/dto/order.dto";
+
 export default interface OrderPortInbound {
 
-    get(): String;
+    get(): Array<OrderDTO>;
 
     getById(id: Number): void;
 
-    send(order: String) : Number;
+    save(order: OrderDTO): Number;
 
-    update(order: String) : void;
+    send(order: OrderDTO): Number;
+
+    //Just keep the id value on Flutter
+    update(id: Number, order: OrderDTO): void;
 
 }
