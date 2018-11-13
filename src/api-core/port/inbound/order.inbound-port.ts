@@ -8,7 +8,7 @@ export default interface OrderPortInbound {
 
     save(order: OrderDTO): Number;
 
-    send(order: OrderDTO): Number;
+    send(order: OrderDTO): void;
 
     //Just keep the id value on Flutter
     update(id: Number, order: OrderDTO): void;

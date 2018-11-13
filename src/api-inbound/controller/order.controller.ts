@@ -23,20 +23,42 @@ export class OrderController implements interfaces.Controller {
 
 
 
+    // @httpPost("/")
+    // private save(req: express.Request, res: express.Response) {
+
+    //     const order = new OrderDTO(req.body);
+    //     try {
+    //         let id = this.orderPortInbound.save(order);
+    //         res.status(200).json({
+    //             status: res.statusCode,
+    //             data: {
+    //                 id: id
+    //             }
+    //         })
+    //     } catch (error) {
+            
+    //     }
+        
+
+    //     // this.orderPortInbound.insert(order);
+
+    //     // try {
+    //     //     await this.orderPortInbound.send(order);
+    //     //     res.sendStatus(201);
+    //     // } catch (err) {
+    //     //     res.status(400).json({ error: err.message });
+    //     // }
+    // }
+
     @httpPost("/")
-    private save(req: express.Request, res: express.Response) {
-
+    private send(req: express.Request, res: express.Response) {
+        console.log("Chegou na camada inbound");
         const order = new OrderDTO(req.body);
         try {
-            let id = this.orderPortInbound.save(order);
-            res.status(200).json({
-                status: res.statusCode,
-                data: {
-                    id: id
-                }
-            })
+            this.orderPortInbound.send(order);
+            res.status(200);
         } catch (error) {
-            
+            res.status(400).json({error: error});
         }
         
 
@@ -49,32 +71,35 @@ export class OrderController implements interfaces.Controller {
         //     res.status(400).json({ error: err.message });
         // }
     }
-    @httpPost("/:id")
-    private update(@requestParam("id") id : Number, req: express.Request, res: express.Response) {
 
-        const order = new OrderDTO(req.body);
-        try {
-            const updatedOrder = this.orderPortInbound.update(id, order);
-            res.status(200).json({
-                status: res.statusCode,
-                data: {
-                    updatedOrder
-                }
-            })
-        } catch (error) {
+    
+
+    // @httpPost("/:id")
+    // private update(@requestParam("id") id : Number, req: express.Request, res: express.Response) {
+
+    //     const order = new OrderDTO(req.body);
+    //     try {
+    //         const updatedOrder = this.orderPortInbound.update(id, order);
+    //         res.status(200).json({
+    //             status: res.statusCode,
+    //             data: {
+    //                 updatedOrder
+    //             }
+    //         })
+    //     } catch (error) {
             
-        }
+    //     }
         
 
-        // this.orderPortInbound.insert(order);
+    //     // this.orderPortInbound.insert(order);
 
-        // try {
-        //     await this.orderPortInbound.send(order);
-        //     res.sendStatus(201);
-        // } catch (err) {
-        //     res.status(400).json({ error: err.message });
-        // }
-    }
+    //     // try {
+    //     //     await this.orderPortInbound.send(order);
+    //     //     res.sendStatus(201);
+    //     // } catch (err) {
+    //     //     res.status(400).json({ error: err.message });
+    //     // }
+    // }
  
     // @httpGet("/")
     // private list(@queryParam("start") start: number, @queryParam("count") count: number): string {

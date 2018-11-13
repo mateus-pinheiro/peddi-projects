@@ -12,11 +12,24 @@ export default class OrderRepositoryImpl implements OrderRepository {
     }
 
     update(id: Number, order: any): any {
-        let data = new OrderEntity(order);
-        console.log(data, id);
-        let newData = data.update({_id: id}, data);
-        console.log(newData);
-        return data.update();
+
+        // let data = new OrderEntity(order);
+
+        OrderEntity.findById(id, function(err: Error, doc: any) {  
+            if (err) {  
+              console.error('error, no entry found');  
+            }  
+            doc.products = order.products;  
+            console.log(doc);
+            console.log(order);
+            doc.save();  
+          })  
+        return order.update();
+
+        // console.log(data, id);
+        // let newData = data.update({"_id": "ObjectId(" + id + ")"}, {"table": data.table});
+        // console.log(newData);
+        // return data.update();
     }
 
 }
