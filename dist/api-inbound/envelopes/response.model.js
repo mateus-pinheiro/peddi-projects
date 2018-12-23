@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class ResponseApi {
+    constructor(incoming) {
+        this.status = incoming.status;
+        this.data = incoming.data;
+        this.err = incoming.err;
+    }
+}
+exports.default = ResponseApi;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9hcGktaW5ib3VuZC9lbnZlbG9wZXMvcmVzcG9uc2UubW9kZWwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxNQUFxQixXQUFXO0lBTTVCLFlBQVksUUFBd0I7UUFDaEMsSUFBSSxDQUFDLE1BQU0sR0FBRyxRQUFRLENBQUMsTUFBTSxDQUFDO1FBQzlCLElBQUksQ0FBQyxJQUFJLEdBQUcsUUFBUSxDQUFDLElBQUksQ0FBQztRQUMxQixJQUFJLENBQUMsR0FBRyxHQUFHLFFBQVEsQ0FBQyxHQUFHLENBQUM7SUFDNUIsQ0FBQztDQUNKO0FBWEQsOEJBV0MiLCJmaWxlIjoiYXBpLWluYm91bmQvZW52ZWxvcGVzL3Jlc3BvbnNlLm1vZGVsLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgY2xhc3MgUmVzcG9uc2VBcGk8VD4ge1xuXG4gICAgcHJpdmF0ZSBzdGF0dXM6IHN0cmluZztcbiAgICBwcml2YXRlIGRhdGEhOiBPYmplY3Q7XG4gICAgcHJpdmF0ZSBlcnIhOiBPYmplY3Q7XG5cbiAgICBjb25zdHJ1Y3RvcihpbmNvbWluZzogUmVzcG9uc2VBcGk8VD4pIHtcbiAgICAgICAgdGhpcy5zdGF0dXMgPSBpbmNvbWluZy5zdGF0dXM7XG4gICAgICAgIHRoaXMuZGF0YSA9IGluY29taW5nLmRhdGE7XG4gICAgICAgIHRoaXMuZXJyID0gaW5jb21pbmcuZXJyO1xuICAgIH1cbn0iXX0=

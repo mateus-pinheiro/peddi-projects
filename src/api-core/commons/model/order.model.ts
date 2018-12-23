@@ -29,66 +29,74 @@
 //     }
 // }
 
-export default class OrderDTO {
-
+export default class OrderModel {
+    public mongo_id?: String;
     public table: Number;
     public guests: Number;
-    public amount_price: Number;
+    public order_price: Number;
     public status: Number;
-    public restaurant_id_cloud: Number;
-    public waiter_id_cloud: Number;
-    public consumers: ConsumerDTO;
-    // waiter: fields.WaiterDTO()
+    public restaurant_id: Number;
+    public waiter_mgmt_id: Number;
+    public created_at: String;
+    public updated_at: String;
+    public consumers: ConsumerModel;
 
-    constructor(incoming: OrderDTO) {
+    constructor(incoming: OrderModel) {
+        this.mongo_id = incoming.mongo_id;
         this.table = incoming.table;
         this.guests = incoming.guests;
-        this.amount_price = incoming.amount_price;
+        this.order_price = incoming.order_price;
         this.status = incoming.status;
-        this.restaurant_id_cloud = incoming.restaurant_id_cloud;
-        this.waiter_id_cloud = incoming.waiter_id_cloud;
+        this.restaurant_id = incoming.restaurant_id;
+        this.waiter_mgmt_id = incoming.waiter_mgmt_id;
+        this.created_at = incoming.created_at;
+        this.updated_at = incoming.updated_at;
         this.consumers = incoming.consumers;
 
     }
 
 }
 
-export class ConsumerDTO {
+export class ConsumerModel {
 
-    public cloud_id: Number;
-    public items: Array<ItemDTO>;
-    // waiter: fields.WaiterDTO()
+    public card: String;
+    public items: Array<ItemModel>;
 
-    constructor(incoming: ConsumerDTO) {
-        this.cloud_id = incoming.cloud_id;
+    constructor(incoming: ConsumerModel) {
+        this.card = incoming.card;
         this.items = incoming.items;
     }
 
 }
 
-export class ItemDTO {
+export class ItemModel {
 
-    public cloud_id: Number;
-    public ingredients: Array<IngredientDTO>;
-    // waiter: fields.WaiterDTO()
+    public base_mgmt_id: Number;
+    public item_price: Number;
+    public ingredients: Array<IngredientModel>;
 
-    constructor(incoming: ItemDTO) {
-        this.cloud_id = incoming.cloud_id;
+    constructor(incoming: ItemModel) {
+        this.base_mgmt_id = incoming.base_mgmt_id;
+        this.item_price = incoming.item_price;
         this.ingredients = incoming.ingredients;
     }
 
 }
 
-export class IngredientDTO {
+export class IngredientModel {
 
-    public cloud_id: Array<Number>;
-    // waiter: fields.WaiterDTO()
+    public ingredient_mgmt_id: Number;
+    public action: Number;
+    public ingredient_price: Number;
 
-    constructor(incoming: IngredientDTO) {
-        this.cloud_id = incoming.cloud_id;
+    constructor(incoming: IngredientModel) {
+        this.ingredient_mgmt_id = incoming.ingredient_mgmt_id;
+        this.action = incoming.action;
+        this.ingredient_price = incoming.ingredient_price;
     }
 
 }
+
 
 //Contract
 // {  

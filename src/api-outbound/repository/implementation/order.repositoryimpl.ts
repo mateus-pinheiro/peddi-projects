@@ -1,9 +1,18 @@
 import OrderRepository from "../order.repository";
 import { OrderEntity } from "../../entity/order.entity";
 import { injectable } from "inversify";
+import { resolve } from "path";
 
 @injectable()
 export default class OrderRepositoryImpl implements OrderRepository {
+    
+    getById(id: String): any {
+        let order;
+        OrderEntity.findById(id).then(resolve => order = resolve);
+        console.log("Order buscada para envio: " + order);
+
+        return order;
+    }
     
     save(order: any): Number {
         let data = new OrderEntity(order);
@@ -11,7 +20,7 @@ export default class OrderRepositoryImpl implements OrderRepository {
         return data._id;
     }
 
-    update(id: Number, order: any): any {
+    update(id: String, order: any): any {
 
         // let data = new OrderEntity(order);
 
@@ -31,5 +40,7 @@ export default class OrderRepositoryImpl implements OrderRepository {
         // console.log(newData);
         // return data.update();
     }
+
+
 
 }

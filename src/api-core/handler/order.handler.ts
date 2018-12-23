@@ -2,7 +2,8 @@ import { injectable, inject } from "inversify";
 import OrderPortInbound from "../port/inbound/order.inbound-port";
 import OrderPortOutbound from "../port/outbound/order.outbound-port"
 import RestaurantPortOutbound from "../port/outbound/restaurant.outbound-port"
-import OrderDTO from "../commons/dto/order.dto";
+import OrderModel from "../commons/model/order.model";
+// import ResponseApi from "../commons/envelopes/response.model";
 
 @injectable()
 export default class OrderHandler implements OrderPortInbound {
@@ -14,35 +15,49 @@ export default class OrderHandler implements OrderPortInbound {
         @inject("RestaurantPortOutbound")
         private restaurantPortOutbound: RestaurantPortOutbound) { }
 
-    save(order: OrderDTO): Number {
+    save(order: OrderModel): any {
 
-        //send the order to EPOC (manager system of restaurant)
+        
+        let response = {
+            //save and get the id value
+            id: this.orderPortOutbound.save(order),
+            //try to send the order to EPOC e wait for the response
+            msg: Object()
+        };
+        this.orderPortOutbound.sellItem(order).then((r) => response.msg = r);
 
-        //treat the return and see if everithing was send
-
-        //save on local database
-        return this.orderPortOutbound.save(order);
+        console.log("Response Outbound:");
+        console.log(response.msg);
+        
+        return response;
     }
-    update(id: Number, order: OrderDTO): void {
+
+    update(id: String, order: OrderModel): void {
         this.orderPortOutbound.update(id, order);
     }
-    send(order: OrderDTO): void {
+
+    send(id: String): void {
         console.log("Chegou na camada core");
+
+        // order : OrderDTO;
+        let order = new OrderModel(this.orderPortOutbound.getById(id));
+
         let restaurantToken = "";
         //get restaurant infos to make the authenticate of peddi cloud api
         // restaurantToken = this.restaurantPortOutbound.getById(order.restaurant_id_cloud).hash;
-        
+
         //tranfer order and restaurant infos from controller to the outside of the application
-        this.orderPortOutbound.send(order, order.restaurant_id_cloud, restaurantToken);
+        this.orderPortOutbound.send(order, order.restaurant_id, restaurantToken);
 
         // return new Number();
         // this.orderPortOutbound.save(order);
         // throw new Error("Method not implemented.");
     }
 
-    get(): Array<OrderDTO> {
+    get(): Array<OrderModel> {
         throw new Error("Method not implemented.");
     }
+
     getById(id: Number): void {
         // throw new Error("Method not implemented.");
     }

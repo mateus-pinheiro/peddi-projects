@@ -1,9 +1,13 @@
-import OrderDTO from "../../commons/dto/order.dto";
+import OrderModel from '../../commons/model/order.model';
 
 export default interface OrderPortOutbound {
-    save(order: OrderDTO): Number;
+    save(order: OrderModel): Number;
 
-    update(id: Number, order: OrderDTO): void;
+    update(id: String, order: OrderModel): void;
 
-    send(order: OrderDTO, restaurant_id_cloud: Number, restaurantToken: String) : Promise<Object>;
+    getById(id : String) : OrderModel;
+
+    send(order: OrderModel, restaurant_id_cloud: Number, restaurantToken: String) : Promise<Object>;
+
+    sellItem(order: OrderModel) : Promise<Object>;
 }
